@@ -173,7 +173,7 @@ jobs:
           echo "GCC_32=CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc-32/bin/${{ env.CUSTOM_GCC_32_BIN }}" >> $GITHUB_ENV
         fi
 
-    - name: 下载编译boot.img工具
+    - name: 下载编译boot镜像工具
       if: env.BUILD_BOOT_IMG == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
@@ -189,7 +189,7 @@ jobs:
           echo "LOCALVERSION=" >> $GITHUB_ENV
         fi
 
-    - name: 下载boot.img
+    - name: 下载boot镜像
       if: env.BUILD_BOOT_IMG == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
@@ -331,7 +331,7 @@ jobs:
             exit 1
         fi
 
-    - name: Upload ${{ env.KERNEL_IMAGE_NAME }}
+    - name: 上传Image.gz-dtb
       if: env.CHECK_FILE_IS_OK == 'true'
       uses: actions/upload-artifact@v4
       with:
@@ -345,7 +345,7 @@ jobs:
         name: AnyKernel3${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/AnyKernel3/*
 
-    - name: 上传DTBO.img
+    - name: 上传dtbo.img
       if: env.CHECK_DTBO_IS_OK == 'true'
       uses: actions/upload-artifact@v4
       with:
